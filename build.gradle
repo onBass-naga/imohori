@@ -1,0 +1,60 @@
+plugins {
+    id 'java'
+    id 'groovy'
+}
+
+group 'com.areab'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    compile files('libs/schema2json-1.0-SNAPSHOT.jar')
+
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind [Apache License 2.0]
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.7'
+    // https://mvnrepository.com/artifact/org.modeshape/modeshape-common [Apache License 2.0]
+    compile group: 'org.modeshape', name: 'modeshape-common', version: '5.4.1.Final'
+    // https://mvnrepository.com/artifact/org.yaml/snakeyaml [Apache License 2.0]
+    compile group: 'org.yaml', name: 'snakeyaml', version: '1.23'
+
+
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api [MIT]
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl [Apache License 2.0]
+    compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.11.1'
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core [Apache License 2.0]
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
+
+
+    // https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all
+    testCompile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.5.6', ext: 'pom'
+
+    // https://mvnrepository.com/artifact/com.h2database/h2 [MPL 2.0 or EPL 1.0]
+    // testCompile group: 'com.h2database', name: 'h2', version: '1.4.197'
+
+    // https://mvnrepository.com/artifact/org.postgresql/postgresql [BSD-2-Clause]
+//    testCompile group: 'org.postgresql', name: 'postgresql', version: '9.4.1212'
+    compile group: 'org.postgresql', name: 'postgresql', version: '9.4.1212'
+
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java [GPL 2.0]
+    // testCompile group: 'mysql', name: 'mysql-connector-java', version: '8.0.13'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+
+jar {
+    manifest {
+        attributes "Main-Class": "com.areab.schema2json.Main"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}

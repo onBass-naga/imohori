@@ -1,0 +1,16 @@
+#####################################
+# Settings
+#####################################
+
+datasource:
+  # driverClassName: org.h2.Driver
+  # url: jdbc:h2:mem:testdb;MODE=PostgreSQL
+  # driverClassName: com.mysql.jdbc.Driver
+  # url: "jdbc:mysql://localhost:3306/test_db1"
+  driverClassName: org.postgresql.Driver
+  url: "jdbc:postgresql://localhost:5432/test_db"
+  schema: myschema
+  username: root
+  password: password
+
+outputDirectory: "./.dist"
